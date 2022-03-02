@@ -1,0 +1,20 @@
+﻿@model ProjectCoffee.Models.Client
+
+@{
+    ViewBag.Title = "User-Exists";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Staff"] != null && Session["Client"] == null)
+    {
+        Layout = "~/Views/Shared/StaffLayout.cshtml";
+    }
+    else
+    {
+        if (Session["Staff"] == null && Session["Client"] != null)
+        {
+            Layout = "~/Views/Shared/ClientLayout.cshtml";
+        }
+    }
+}
+
+<h2 style="color:white; text-align:center;">User Already Exists</h2>
+

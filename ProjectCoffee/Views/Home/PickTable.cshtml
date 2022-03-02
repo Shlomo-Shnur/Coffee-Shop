@@ -1,0 +1,47 @@
+﻿@model ProjectCoffee.ViewModel.UserViewModel
+@using ProjectCoffee.Models;
+@{
+    ViewBag.Title = "Pick-Table";
+    if (Session["Staff"] != null && Session["Client"] == null)
+    {
+        Layout = "~/Views/Shared/StaffLayout.cshtml";
+    }
+    else
+    {
+        if (Session["Staff"] == null && Session["Client"] != null)
+        {
+            Layout = "~/Views/Shared/ClientLayout.cshtml";
+        }
+    }
+}
+
+<h2 style="color:white;">Pick A Table To Sit</h2>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div>
+        <table class="styled-table">
+            <thead>
+                <tr class="active-row">
+                    <th>Id</th>
+                    <th>Chairs </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Table table in Model.Tables)
+                {
+                    <tr class="active-row">
+                        <td>@table.TableId</td>
+                        <td>@table.Chairs</td>
+                        <td>@Html.ActionLink("Sit", "Sit", new { table.TableId }, new { @class = "button button1" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

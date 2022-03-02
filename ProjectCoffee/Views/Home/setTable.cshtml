@@ -1,0 +1,33 @@
+﻿@model ProjectCoffee.Models.Table
+@{
+    ViewBag.Title = "setTable";
+    Layout = "~/Views/Shared/StaffLayout.cshtml";
+}
+
+<h2 style="color:white;">Set A New Table</h2>
+
+<html>
+<body>
+    <div>
+        @using (Html.BeginForm("addTable", "Home", FormMethod.Post))
+        {
+            <table class="styled-table">
+                <tbody>
+                    <tr>
+                        <td><b> How Many Chairs For The Table:</b></td>
+                        <td>@Html.TextBoxFor(model => model.Chairs)</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th><input id="SubmitButt" type="submit" value="Set Table" style="float: right;" /></th>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
+    <div style="color:gold; font-size:20px; text-align:center;">
+        @ViewBag.msg
+    </div>
+</body>
+</html>
+

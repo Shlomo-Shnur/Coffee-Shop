@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Staff"] != null && Session["Client"] == null)
+    {
+        Layout = "~/Views/Shared/StaffLayout.cshtml";
+    }
+    else
+    {
+        if (Session["Staff"] == null && Session["Client"] != null)
+        {
+            Layout = "~/Views/Shared/ClientLayout.cshtml";
+        }
+    }
+}
+    @using ProjectCoffee.Models;
+
+<!DOCTYPE html>
+<style>
+    body {
+        background-color: #333;
+        background-image: url('../../Content/images/lazarescu-alexandra-AZJrf0D6Vvo-unsplash.jpg');
+    }
+    h2{
+        color:greenyellow;
+        text-align:center;
+    }
+</style>
+<html>
+<body>
+    <div>
+        <h2>Something Went Wrong Trying To Access The Page Maybe You Arent Allowed ?</h2>
+        <br />
+        <h2>ლ(ಠ益ಠლ</h2>
+    </div>
+</body>
+</html>

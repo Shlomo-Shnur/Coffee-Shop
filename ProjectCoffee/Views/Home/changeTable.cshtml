@@ -1,0 +1,50 @@
+﻿@model ProjectCoffee.ViewModel.UserViewModel
+@using ProjectCoffee.Models;
+
+@{
+    ViewBag.Title = "change-Table";
+    Layout = "~/Views/Shared/StaffLayout.cshtml";
+}
+
+<h2 style="color:white;">Reorder Tables</h2>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+    </head>
+    <body>
+        <div>
+            <table class="styled-table">
+                <thead>
+                    <tr class="active-row">
+                        <th>Id</th>
+                        <th>Chairs </th>
+                        <th>Occupied </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Table table in Model.Tables)
+                    {
+                    <tr class="active-row">
+                        <td>@table.TableId</td>
+                        <td>@table.Chairs</td>
+                        @if (table.Occupied)
+                        {
+                            <td>Yes</td>
+                        }
+                        else
+                        {
+                            <td>No</td>
+                        }
+
+                        <td>@Html.ActionLink("Delete table", "DelTable", new { table.TableId }, new { @class = "button button1" })</td>
+                        <td>@Html.ActionLink("Change Seats", "changeSits", new { table.TableId }, new { @class = "button button1" })</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

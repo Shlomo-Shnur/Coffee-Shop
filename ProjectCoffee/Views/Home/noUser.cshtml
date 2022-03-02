@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "No-User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Staff"] != null && Session["Client"] == null)
+    {
+        Layout = "~/Views/Shared/StaffLayout.cshtml";
+    }
+    else
+    {
+        if(Session["Staff"] == null && Session["Client"] != null)
+        {
+            Layout = "~/Views/Shared/ClientLayout.cshtml";
+        }
+    }
+}
+<style>
+    .header {
+        text-align: center;
+        color: red;
+        font-size: 20px;
+    }
+</style>
+<body style="background-image: url('../../Content/images/lazarescu-alexandra-AZJrf0D6Vvo-unsplash.jpg');">
+    <h2 class="header">no such User in the system</h2>
+</body>

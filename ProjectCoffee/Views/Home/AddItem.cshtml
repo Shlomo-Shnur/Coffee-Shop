@@ -1,0 +1,47 @@
+﻿@model ProjectCoffee.Models.Item
+
+@{
+    ViewBag.Title = "Add - Item";
+    Layout = "~/Views/Shared/StaffLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<h2 style="color:white;">Add Item To The Menu</h2>
+<style>
+    .textarea {
+        width: 300px;
+        height: 100px;
+        font-size: 1.5em;
+    }
+</style>
+
+<html>
+
+<body>
+    <div>
+        @using (Html.BeginForm("SubmitItem", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <table class="styled-table">
+                <tbody>
+                    <tr>
+                        <td><b> Item Name and Description:</b></td>
+                        <td>@Html.TextAreaFor(model => model.Info , new { @class = "textarea" }) @Html.ValidationMessageFor(model => model.Info) </td>
+                    </tr>
+                    <tr>
+                        <td><b> Price:</b></td>
+                        <td>@Html.TextBoxFor(model => model.Price) @Html.ValidationMessageFor(model => model.Price) </td>
+                    </tr>
+                    <tr>
+                        <td><label for="img">Select Image:</label></td>
+                        <td><input type="file" name="postedItem" /></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th><input id="SubmitButt" type="submit" value="Add Item" style="float: right;" /></th>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
+</body>
+</html>

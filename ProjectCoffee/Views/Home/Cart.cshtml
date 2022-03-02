@@ -1,0 +1,52 @@
+﻿@model ProjectCoffee.ViewModel.UserViewModel
+@using ProjectCoffee.Models;
+@{
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+    ViewBag.Title = "Cart";
+    int sum = 0;
+}
+
+<h2 style="color:white;">Cart</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div>
+        <table class="styled-table">
+            <tbody>
+                @foreach (Item item in Model.Items)
+                {
+                    var base64 = Convert.ToBase64String(item.file);
+                    var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                    sum += item.Price;
+
+                    <tr class="active-row">
+                        <td>@item.Info</td>
+                        <td>@(item.Price)₪</td>
+                        <td><img src='@imgsrc' style="max-width: 100px; max-height: 100px; border-radius: 31px;" /></td>
+                        <td>@Html.ActionLink("Remove item", "RemoveFromCart", new { item.idItem }, new { @class = "button button1" })</td>
+                    </tr>
+                }
+            </tbody>
+            <tr>
+                <th></th>
+                @if (((Client)Session["Client"]).VIP && ((Client)Session["Client"]).CCounter >= 10) 
+                {
+                    <th>Your Total Price is: @sum And You Get Free Coffee For Being VIP Member</th>
+                }
+            else
+            {
+            <th>Your Total Price is: @sum</th>
+            }
+                @if (Model.Items.Count != 0) 
+                {
+                <th>@Html.ActionLink("Payment By Card", "PaymentPage", new { sum })</th>
+                <th>@Html.ActionLink("Payment By Cash", "PayByClient")</th>
+                }
+            </tr>
+        </table>
+        
+    </div>
+</body>
+</html>

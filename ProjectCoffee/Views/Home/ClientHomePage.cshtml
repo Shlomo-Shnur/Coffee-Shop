@@ -1,0 +1,11 @@
+﻿@using ProjectCoffee.Models;
+
+@{
+    ViewBag.title = "Client Home Page";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+
+@if (((Client)Session["Client"]) != null)
+{
+<h1 style="color:white;"> hello @(((Client)Session["Client"]).Name) </h1>
+}

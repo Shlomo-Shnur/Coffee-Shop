@@ -1,0 +1,13 @@
+﻿@model ProjectCoffee.Models.Staff
+@using ProjectCoffee.Models;
+
+@{
+    Layout = "~/Views/Shared/StaffLayout.cshtml";
+    ViewBag.title = "Staff Home Page";
+}
+
+
+@if (((Staff)Session["Staff"]) != null)
+{
+  <h1 style="color:white;"> hello @(((Staff)Session["Staff"]).Name) What Would You Like To Do?</h1>
+}
